@@ -1,6 +1,8 @@
-import User, { findOne } from "../models/user.js";
-import { sign } from "jsonwebtoken";
-require("dotenv").config();
+import User from "../models/user.js";
+import pkg from 'jsonwebtoken';
+const { sign } = pkg;
+import dotenv from "dotenv";
+dotenv.config();
 
 export async function register(req, res) {
   const { username, password } = req.body;

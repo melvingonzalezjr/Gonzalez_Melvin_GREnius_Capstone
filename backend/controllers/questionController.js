@@ -1,5 +1,3 @@
-import { countDocuments, findOne } from "../models/questions.js";
-
 export async function getQuestion(req, res) {
   const { section } = req.params;
   try {
@@ -11,3 +9,16 @@ export async function getQuestion(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+
+export const submitAnswer = async (req, res) => {
+  const { questionId, answer } = req.body;
+  try {
+    const question = await Question.findById(questionId);
+    if (!question)
+      return res.status(404).json({ message: "Question not found" });
+    const isCorrect = question.correctAnswer === answer;
+    res.json({ isCorrect });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};

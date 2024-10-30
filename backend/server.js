@@ -1,6 +1,7 @@
 import express from "express";
-import { json } from "body-parser";
-import connectDB from "./config/db.js";
+import pkg from 'body-parser';
+const { json } = pkg;
+import connectDB from "./config/db.mjs";
 import authRoutes from "./routes/authRoutes.js";
 import quizRoutes from "./routes/quizRoutes.js";
 
