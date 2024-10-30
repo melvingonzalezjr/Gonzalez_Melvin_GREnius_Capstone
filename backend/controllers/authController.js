@@ -1,5 +1,4 @@
-// controllers/authController.js
-import User, { findOne } from "../models/User";
+import User, { findOne } from "../models/user";
 import { sign } from "jsonwebtoken";
 require("dotenv").config();
 
