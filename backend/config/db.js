@@ -1,4 +1,3 @@
-// config/db.js
 import { connect } from "mongoose";
 require("dotenv").config();
 

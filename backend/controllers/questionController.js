@@ -1,4 +1,4 @@
-import { countDocuments, findOne } from "../models/questions";
+import { countDocuments, findOne } from "../models/questions.js";
 
 export async function getQuestion(req, res) {
   const { section } = req.params;
