@@ -1,4 +1,4 @@
-import Question from "../models/questions.js";  // Adjust the path as necessary
+import Question from "../models/questions.js"; // Adjust the path as necessary
 
 export async function getQuestion(req, res) {
   const { section } = req.params;
@@ -7,9 +7,11 @@ export async function getQuestion(req, res) {
     // Use `Question.countDocuments` to count documents in the collection
     const count = await Question.countDocuments({ section });
     console.log("Total questions found:", count); // Log the count
-    
+
     if (count === 0) {
-      return res.status(404).json({ message: "No questions found for this section" });
+      return res
+        .status(404)
+        .json({ message: "No questions found for this section" });
     }
 
     // Use `Question.findOne` to find a random document in the specified section
@@ -18,21 +20,29 @@ export async function getQuestion(req, res) {
     console.log("Random question selected:", question); // Log the question found
 
     res.json(question);
-
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 }
 
-
 export const submitAnswer = async (req, res) => {
   const { questionId, answer } = req.body;
   try {
     const question = await Question.findById(questionId);
-    if (!question)
+    if (!question) {
       return res.status(404).json({ message: "Question not found" });
+    }
+
     const isCorrect = question.correctAnswer === answer;
-    res.json({ isCorrect });
+
+    
+    const response = {
+      isCorrect: isCorrect,
+      correctAnswer: isCorrect ? null : question.correctAnswer
+    };
+
+    console.log("Response:", response); // Log response object to console for debugging
+    res.json(response); // Send response object
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

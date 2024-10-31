@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Question from "./models/question.js"; // Adjust the path if needed
+import Question from "./models/questions.js"; // Adjust the path if needed
 
 dotenv.config();
 
@@ -17,20 +17,20 @@ const quantQuestions = [
     questionText: "(5^27) * 575 vs (5^28)*115",
     options: ["Quantity A is greater.", "Quantity B is greater.", "The two quantities are equal.", 
               "The relationship cannot be determined from the information given."],
-    correctAnswer: "Quantity A is greater."
+    correctAnswer: "The two quantities are equal."
   },
   {
     section: "quantitative",
     questionText: "Alejandro rolls a six-sided die twice. Compare the probability of rolling two even numbers to the probability that neither number is a multiple of 3.",
     options: ["Quantity A is greater.", "Quantity B is greater.", "The two quantities are equal.", 
               "The relationship cannot be determined from the information given."],
-    correctAnswer: "The relationship cannot be determined from the information given."
+    correctAnswer: "Quantity B is greater."
   },
   {
     section: "quantitative",
     questionText: "If 4(r – s) = –2, then what is r, in terms of s?",
-    options: ["s / 2", "s * 1 / 2", "s * 3 / 2", "s + 2", "2s"],
-    correctAnswer: "s * 3 / 2"
+    options: ["-s / 2", "s - 1 / 2", "s - 3 / 2", "s + 2", "2s"],
+    correctAnswer: "s - 1/2"
   },
   {
     section: "quantitative",
