@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SchoolForm from '../components/SchoolForm';
 import { fetchSchools, addSchool } from '../services/api';
+import '../styles/Schools.css'
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);

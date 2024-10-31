@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const { login } = useAuth();
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,10 +13,23 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await apiLogin({ email, password });
-      login();  // Set authentication state to true
-      navigate('/quiz');  // Redirect to Quiz page after login
+      // Call the login API
+      const response = await apiLogin({ email, password });
+      const token = response.data.token;
+
+      if (token) {
+        // Store token in local storage
+        localStorage.setItem('token', token);
+        console.log("Token saved in local storage:", token);
+
+        // Update auth state and redirect
+        login();
+        navigate('/quiz');
+      } else {
+        console.log("Token not returned from login response.");
+      }
     } catch (err) {
+      // Handle errors
       setError(err.response?.data?.error || 'Login failed');
     }
   };
@@ -31,6 +44,7 @@ const LoginForm = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        autoComplete="email"
       />
       <input
         type="password"
@@ -38,10 +52,13 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        autoComplete="current-password" 
       />
       <button type="submit">Log In</button>
+      {error && <p>{error}</p>}
     </form>
   );
 };
 
 export default LoginForm;
+
