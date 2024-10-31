@@ -35,6 +35,9 @@ export async function register(req, res) {
 login function for users signing in. 
 */
 export async function login(req, res) {
+  //doublchecking my token
+  console.log("JWT Secret used for token generation:", process.env.JWT_SECRET); // Debugging line
+
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });

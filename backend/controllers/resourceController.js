@@ -1,4 +1,3 @@
-// controllers/resourceController.js
 
 export const getGeneralResources = (req, res) => {
   res.json([

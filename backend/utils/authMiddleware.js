@@ -1,20 +1,36 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
+import dotenv from "dotenv";
+dotenv.config();
 
 const authMiddleware = (req, res, next) => {
-  const token = req.header("Authorization")?.replace("Bearer ", "");
+  const authHeader = req.headers.authorization;
+  console.log("Authorization Header:", authHeader);  // Log authorization header
+
+  if (!authHeader) {
+    console.log("Authorization header missing");
+    return res.status(401).json({ message: 'Authorization header missing' });
+  }
+
+  const token = authHeader.split(' ')[1];
+  console.log("Token received:", token);  // Log the extracted token
 
   if (!token) {
-    return res.status(401).json({ message: "Unauthorized: No token provided" });
+    console.log("Token missing");
+    return res.status(401).json({ message: 'Token missing' });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;  // Set the decoded token to `req.user`
+    console.log("Token decoded successfully:", decoded);  // Log decoded token payload
+    req.user = decoded;
     next();
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized: Invalid token" });
+    console.log("Invalid token:", error.message);  // Log any verification errors
+    res.status(401).json({ message: 'Invalid token' });
   }
 };
 
 export default authMiddleware;
+
+
 
