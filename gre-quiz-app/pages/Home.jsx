@@ -7,7 +7,7 @@ const Home = () => {
   
     return (
       <div className="container">
-        <h1>Welcome to GRE Quiz App</h1>
+        <h1>Become a GRE Genious!</h1>
         {showRegister ? (
           <>
             <RegisterForm />
