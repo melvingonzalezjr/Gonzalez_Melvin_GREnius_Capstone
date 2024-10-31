@@ -3,12 +3,13 @@ import pkg from 'jsonwebtoken';
 const { sign } = pkg;
 import dotenv from "dotenv";
 dotenv.config();
+import bcrypt from "bcryptjs";
 
 export async function register(req, res) {
   const { username, password } = req.body;
   try {
-    const user = new User({ username, password });
-    await user.save();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ username, email, password: hashedPassword });
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -21,7 +22,7 @@ login function for users signing in.
 export async function login(req, res) {
   const { username, password } = req.body;
   try {
-    const user = await findOne({ username });
+    const user = await User.findOne({ username });
     //if user not found or the input password and stored password  do not match, return 401 error
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: "Invalid credentials" });
