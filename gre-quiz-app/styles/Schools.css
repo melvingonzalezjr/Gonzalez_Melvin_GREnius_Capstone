@@ -1,0 +1,35 @@
+.schools-page {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .school-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .school-form input,
+  .school-form select {
+    padding: 8px;
+    font-size: 1em;
+  }
+  
+  .school-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .school-list li {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  

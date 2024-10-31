@@ -39,7 +39,7 @@ Through the development of GREnius, I learned several lessons:
 
 ## Future Enhancements
 
-1. **Enhanced Question Bank**: Adding questions by hand is tedious. I would love to see if there's a way to scrape questions from a Practice exam (including relevent Math graphics).
+1. **Enhanced Question Bank**: Adding questions by hand is tedious. I would love to see if there's a way to scrape questions from a Practice exam (including relevent Math graphics). 
 2. **Analytical Writing Portion**: The Writing section is also part of the GRE. It's not weighed as much as the others, and having a space to type an essay was too difficult for this project. Perhaps I could connect to OpenAI API to grade essays.
 3. **Turn the Schools List into a Tracker**: View schools as categories (applied, accepted, rejected) or sort by application due date.
 
@@ -51,7 +51,7 @@ To run GREnius on your local machine:
 1. Clone the repository: `git clone https://github.com/your-username/GREnius.git`
 2. Navigate to the project directory and install dependencies for both frontend and backend:
    ```bash
-   cd frontend
+   cd gre-quiz-app
    npm install
    cd ../backend
    npm install

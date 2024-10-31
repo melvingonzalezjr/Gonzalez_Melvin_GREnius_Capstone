@@ -51,9 +51,6 @@ const Question = ({ data, onSubmitAnswer }) => {
           </label>
         </div>
       )}
-      <button onClick={handleSubmit} style={{ marginTop: '1rem' }}>
-        Submit
-      </button>
     </div>
   );
 };

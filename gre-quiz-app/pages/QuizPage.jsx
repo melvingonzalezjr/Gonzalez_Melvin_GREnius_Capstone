@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { fetchQuestion, submitAnswer } from '../services/api';
-import Question from '../components/Question';
+import React, { useState } from "react";
+import { fetchQuestion, submitAnswer } from "../services/api";
+import Question from "../components/Question";
 
 const QuizPage = () => {
-  const [section, setSection] = useState('quantitative');
+  const [section, setSection] = useState("quantitative");
   const [question, setQuestion] = useState(null);
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
 
   const handleSectionChange = (e) => {
     setSection(e.target.value);
@@ -15,9 +15,9 @@ const QuizPage = () => {
     try {
       const response = await fetchQuestion(section);
       setQuestion(response.data);
-      setFeedback('');
+      setFeedback("");
     } catch (err) {
-      setFeedback('Could not fetch question. Please try again.');
+      setFeedback("Could not fetch question. Please try again.");
     }
   };
 
@@ -31,13 +31,13 @@ const QuizPage = () => {
 
       // Set feedback message
       if (isCorrect) {
-        setFeedback('Correct! Great job!');
+        setFeedback("Correct! Great job!");
       } else {
         setFeedback(`Incorrect. The correct answer is: ${correctAnswer}`);
       }
     } catch (error) {
       console.error("Error submitting answer:", error);
-      setFeedback('Error submitting answer. Please try again.');
+      setFeedback("Error submitting answer. Please try again.");
     }
   };
 
@@ -49,7 +49,7 @@ const QuizPage = () => {
           <input
             type="radio"
             value="quantitative"
-            checked={section === 'quantitative'}
+            checked={section === "quantitative"}
             onChange={handleSectionChange}
           />
           Quantitative Reasoning
@@ -58,7 +58,7 @@ const QuizPage = () => {
           <input
             type="radio"
             value="verbal"
-            checked={section === 'verbal'}
+            checked={section === "verbal"}
             onChange={handleSectionChange}
           />
           Verbal Reasoning
@@ -67,10 +67,25 @@ const QuizPage = () => {
       <button onClick={handleFetchQuestion}>Get Question</button>
 
       {question && (
-        <Question data={question} onSubmitAnswer={handleSubmitAnswer} />
-      )}
+        <div className="question-container">
+          <div className="question-text">
+            <h3>{question.text}</h3>
+          </div>
 
-      {feedback && <p className="feedback">{feedback}</p>}
+          <div className="answer-options">
+            <Question data={question} onSubmitAnswer={handleSubmitAnswer} />
+          </div>
+
+          <button
+            className="submit-button"
+            onClick={() => handleSubmitAnswer(/* userAnswer */)}
+          >
+            Submit Answer
+          </button>
+
+          {feedback && <p className="feedback">{feedback}</p>}
+        </div>
+      )}
     </div>
   );
 };

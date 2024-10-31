@@ -1,0 +1,44 @@
+.resources-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  section {
+    width: 80%; 
+  max-width: 600px;
+  margin-bottom: 20px;
+  }
+  
+  h2 {
+    color: #555;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  li {
+    margin: 10px 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #6a0dad; /* Use a pop of color */
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
