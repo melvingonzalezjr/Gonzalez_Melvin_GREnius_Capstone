@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getQuestion } from "../controllers/questionController.js";
+import { getQuestion, submitAnswer } from "../controllers/questionController.js";
 import authMiddleware from '../utils/authMiddleware.js';
 
 const router = Router();

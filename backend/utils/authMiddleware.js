@@ -1,18 +1,20 @@
-import { verify } from "jsonwebtoken";
-require("dotenv").config();
+import jwt from "jsonwebtoken";
 
-//middleware function verifies the user token anytime we fetch quiz questions to ensure user is seeing questions they have access to.
 const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
-  if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized: No token provided" });
+  }
 
   try {
-    const decoded = verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;  // Set the decoded token to `req.user`
     next();
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(401).json({ message: "Unauthorized: Invalid token" });
   }
 };
 
 export default authMiddleware;
+
