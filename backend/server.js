@@ -6,10 +6,11 @@ import resourceRoutes from "./routes/resourceRoutes.js";
 import dotenv from "dotenv";
 import cors from 'cors';
 
-app.use(cors());
 dotenv.config();
-
 const app = express();
+
+//Middleware
+app.use(cors());
 app.use(express.json());
 
 connectDB();

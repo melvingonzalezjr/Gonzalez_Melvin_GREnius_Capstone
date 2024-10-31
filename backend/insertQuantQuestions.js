@@ -30,7 +30,7 @@ const quantQuestions = [
     section: "quantitative",
     questionText: "If 4(r – s) = –2, then what is r, in terms of s?",
     options: ["-s / 2", "s - 1 / 2", "s - 3 / 2", "s + 2", "2s"],
-    correctAnswer: "s - 1/2"
+    correctAnswer: "s - 1 / 2"
   },
   {
     section: "quantitative",
@@ -42,18 +42,21 @@ const quantQuestions = [
 
 const insertQuestions = async () => {
   try {
-    // Connect to MongoDB
+    // Connect to MongoDB with recommended options
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("Connected to MongoDB");
+    console.log('Connected to MongoDB');
 
     // Insert questions
     await Question.insertMany(quantQuestions);
-    console.log("Quantitative Reasoning questions inserted successfully");
+    console.log('Quantitative Reasoning questions inserted successfully');
 
-    // Close the connection
-    mongoose.connection.close();
   } catch (error) {
-    console.error("Error inserting questions:", error);
+    console.error('Error inserting questions:', error);
+    
+  } finally {
+    // Ensure the connection is closed
+    await mongoose.disconnect();
+    console.log('Disconnected from MongoDB');
   }
 };
 

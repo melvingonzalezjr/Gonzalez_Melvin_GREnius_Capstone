@@ -33,7 +33,7 @@ export const submitAnswer = async (req, res) => {
       return res.status(404).json({ message: "Question not found" });
     }
 
-    const isCorrect = question.correctAnswer === answer;
+    const isCorrect = question.correctAnswer == answer;
 
     
     const response = {
