@@ -4,7 +4,9 @@ import authRoutes from "./routes/authRoutes.js";
 import quizRoutes from "./routes/quizRoutes.js";
 import resourceRoutes from "./routes/resourceRoutes.js";
 import dotenv from "dotenv";
+import cors from 'cors';
 
+app.use(cors());
 dotenv.config();
 
 const app = express();
